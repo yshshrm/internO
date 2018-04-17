@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% block content%}
+
+<h1>Profile</h1> {{intern.profile}}
+<br>
+<h1>Description</h1> {{intern.description}}
+<br>
+<h1>Location</h1> {{intern.location}}
+
+<br><br>
+{% if applied %}
+    You've already applied
+{% else %}
+    <form action="{% url 'apply' intern.id%}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Submit Application">
+    </form>
+{% endif %}
+
+
+{% endblock %}
