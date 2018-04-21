@@ -1,16 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Profile(models.Model):
-    name = models.CharField(max_length = 200)
-    email = models.EmailField(max_length = 255)
-    phone = models.IntegerField()
-    city = models.CharField(max_length = 200)
+class Profile(User):
     is_student = models.BooleanField(default = False)
     is_company = models.BooleanField(default = False)
 
+class Student(models.Model):
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE, primary_key=True)
+
+class Company(models.Model):
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE, primary_key=True)
+
 # Related to Student
 class Education(models.Model):
-    student_id = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    student = models.ForeignKey(Profile, on_delete = models.CASCADE)
     college = models.CharField(max_length=200)
     gpa = models.IntegerField()
     tenure_start = models.DateField(auto_now = False, auto_now_add = False)
@@ -18,25 +21,19 @@ class Education(models.Model):
     degree = models.CharField(max_length = 255)
 
 class WorkEx(models.Model):
-    student_id = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    student = models.ForeignKey(Profile, on_delete = models.CASCADE)
     company = models.CharField(max_length=200)  
     tenure_start = models.DateField(auto_now = False, auto_now_add = False)
     tenure_end = models.DateField(auto_now = False, auto_now_add = False)
     description = models.TextField()
 
 class Achievement(models.Model):
-    student_id = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    student = models.ForeignKey(Profile, on_delete = models.CASCADE)
     achievement = models.TextField()
-
-# class Company(models.Model):
-#     email = models.EmailField(max_length = 250)
-#     name = models.CharField(max_length = 200)
-#     phone = models.IntegerField()
-#     description = models.TextField()
 
 # Related to company
 class Internship(models.Model):
-    # company_id = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    company = models.ForeignKey(Company, on_delete = models.CASCADE)
     profile = models.CharField(max_length = 200)
     description = models.TextField()
     location = models.CharField(max_length = 100)
@@ -45,5 +42,5 @@ class Internship(models.Model):
         return (str(self.id))
 
 class Application(models.Model):
-    student_id = models.ForeignKey(Profile, on_delete = models.CASCADE)
-    internship_id = models.ForeignKey(Internship, on_delete = models.CASCADE)
+    student = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    internship = models.ForeignKey(Internship, on_delete = models.CASCADE)

@@ -35,20 +35,20 @@
 
             </ul>
 
-            <form class="navbar-form navbar-left" role="search" method="get" action="#">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-
             <ul class="nav navbar-nav navbar-right">
-                <li class="" >
-                    <a href="{% url 'internships' %}">Login</a>
-                </li>
-                <li class="" >
-                    <a href="{% url 'internships' %}">SignUp</a>
-                </li>
+                {% if not request.user.is_authenticated %}
+                    <li class="" >
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="" >
+                        <a href="{% url 'register' %}">SignUp</a>
+                    </li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    <li class="" >
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

@@ -2,7 +2,6 @@
 
 {% block content %}
 <div class="container-fluid">
-{% if request.user.is_authenticated %}
 
     <div class="row">
         <div class = "col-sm-12 col-md-7">
@@ -26,8 +25,4 @@
         </div>
     </div>
 </div>
-
-{% else %}
-    <h1>Need to log in as company</h1>
-{% endif %}
 {% endblock content %}
