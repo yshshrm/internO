@@ -7,14 +7,25 @@
 <h1>Description</h1> {{intern.description}}
 <br>
 <h1>Location</h1> {{intern.location}}
+<br>
+<h1>Company</h1> {{intern.company.name}}
 
 <br><br>
 {% if applied %}
     You've already applied
-{% else %}
+{% elif request.user.is_authenticated and request.user.profile.is_student %}
     <form action="{% url 'apply' intern.id%}" method="post">
         {% csrf_token %}
         <input type="submit" value="Submit Application">
+    </form>
+{% elif request.user.is_authenticated and request.user.profile.is_company %}
+    <form action="{% url 'intern_applications' intern.id%}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="View applications">
+    </form>
+    <form action="{% url 'intern_delete' intern.id%}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Internship">
     </form>
 {% endif %}
 

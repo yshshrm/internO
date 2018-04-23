@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ request.user.profile.name }}</h3>
+{{request.user.profile.email}}
+
+{% if request.user.profile.is_student %}
+
+<h3>Education</h3>
+{% for e in education %}
+{{e.college}} - {{e.degree}} - {{e.gpa}}
+<br>
+{% endfor %}
+<form action="{% url 'add_education' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Add Education">
+</form>
+
+<h3>Work Experience</h3>
+
+{% for w in work %}
+{{w.company}} - {{w.description}}
+<br>
+
+{% endfor %}
+<form action="{% url 'add_work' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Add Work Experience">
+</form>
+
+{% endif %}
+{%endblock%}

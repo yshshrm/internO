@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>{{ profile.name }}</h3>
+{{profile.email}}
+
+<h3>Education</h3>
+{% for e in education %}
+{{e.college}} - {{e.degree}} - {{e.gpa}}
+<br>
+{% endfor %}
+
+<h3>Work Experience</h3>
+
+{% for w in work %}
+{{w.company}} - {{w.description}}
+<br>
+{% endfor %}
+{%endblock%}

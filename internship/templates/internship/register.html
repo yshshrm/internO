@@ -8,17 +8,10 @@
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <form class="form-horizontal" action="" method = "post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% include "form-template.html" %}
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-
-                    </form>
+                    <h3>Login as: </h3>
+                    <a href="{% url 'register_company' %}">Company</a>
+                    <br>
+                    <a href="{% url 'register_student' %}">Student</a>
 
                 </div>
             </div>

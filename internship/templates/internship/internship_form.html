@@ -2,22 +2,31 @@
 
 {% block content %}
 <div class="container-fluid">
-{% if request.user.is_authenticated %}
+{% if request.user.is_authenticated and request.user.profile.is_company == True%}
 
     <div class="row">
         <div class = "col-sm-12 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
 
-                    <form class="form-horizontal" action="" method = "post" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="{% url 'internship_add_button' %}" method = "post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {% include "form-template.html" %}
-
+                        <label for="profile">Profile</label>
+                        <input type="text" name="profile" id="profile" />
+                        <br />
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" />
+                        <br />
+                        <label for="location">Location</label>
+                        <input type="text" name="location" id="location" />
+                        <br />
+                    
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
                             </div>
-                        </div>
+                    </form>
 
                     </form>
 

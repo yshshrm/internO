@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Add work experience</h3>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class = "col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <form class="form-horizontal" action="{% url 'add_work_button' %}" method = "post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <label for="company">Company</label>
+                                    <input type="text" name="company" id="company" />
+                                    <br />
+                                    <label for="description">Description</label>
+                                    <input type="text" name="description" id="description" />
+                                    <br />
+                                
+                                    <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                </form>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

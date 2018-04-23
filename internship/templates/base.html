@@ -28,25 +28,42 @@
         </div>
 
         <div class="navbar-collapse collapse navbar-right" id="topNavbar">
-            <ul class="nav navbar-nav">
-                <li class="" >
-                    <a href="{% url 'internships' %}">Internships</a>
-                </li>
-
-            </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 {% if not request.user.is_authenticated %}
                     <li class="" >
-                        <a href="{% url 'login' %}">Login</a>
+                        <a href="{% url 'internships' %}">Internships</a>
                     </li>
                     <li class="" >
-                        <a href="{% url 'register' %}">SignUp</a>
+                        <a href="{% url 'login_x' %}">Login</a>
+                    </li>
+                    <li class="" >
+                        <a href="{% url 'register_choice' %}">SignUp</a>
                     </li>
                 {% endif %}
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and request.user.profile.is_student %}
                     <li class="" >
-                        <a href="{% url 'logout' %}">Logout</a>
+                        <a href="{% url 'internships' %}">Internships</a>
+                    </li>   
+                    <li>
+                        <a href="{% url 'applications' %}">My Applications</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'user' %}">My Profile</a>
+                    </li>
+                    <li class="" >
+                        <a href="{% url 'logout_button' %}">Logout</a>
+                    </li>
+                {% endif %}
+                {% if request.user.is_authenticated and request.user.profile.is_company %}  
+                    <li class="" >
+                        <a href="{% url 'internship_add' %}">Add Internship</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'posted' %}">Posted Internships</a>
+                    </li>
+                    <li class="" >
+                        <a href="{% url 'logout_button' %}">Logout</a>
                     </li>
                 {% endif %}
             </ul>

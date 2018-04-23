@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class = "col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <form class="form-horizontal" action="{% url 'add_education_button' %}" method = "post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <label for="college">College</label>
+                                    <input type="text" name="college" id="college" />
+                                    <br />
+                                    <label for="degree">Degree</label>
+                                    <input type="text" name="degree" id="degree" />
+                                    <br />
+                                    <label for="gpa">GPA</label>
+                                    <input type="number" name="gpa" id="gpa" />
+                                    <br />
+                                
+                                    <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                </form>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

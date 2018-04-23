@@ -3,7 +3,7 @@
 
 <ul>
     {% for intern in interns %} 
-    <li><a href="{% url 'intern_detail' intern.id %}">Internship: {{intern.profile}}</a></li>
+    <li><a href="{% url 'intern_detail' intern.id %}">{{intern.profile}} - {{intern.company.name}}</a></li>
     {% endfor %}
 </ul>
 

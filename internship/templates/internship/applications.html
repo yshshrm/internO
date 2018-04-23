@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content%}
+{% if request.user.is_authenticated and request.user.profile.is_student %}
+<ul>
+    {% for a in applications %} 
+    <li><a href="{% url 'intern_detail' a.internship.id %}">{{a.internship.profile}} - {{a.internship.company}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<h1>Login as student</h1>
+{% endif %}
+
+{% endblock %}
