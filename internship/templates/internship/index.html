@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Welcome to Intern Portal</h1>
+<div style="height: 100%; position: relative;">
+    <h1 style="text-align: center; vertical-align:middle; padding-top: 18%;">Welcome to Intern Portal</h1>
+    {% if request.user.is_authenticated %}
+        <br>
+        <p style="text-align: center;  vertical-align:middle;"> You are logged in as {{request.user.profile.name}}</p>
+    {% endif %}
+</div>
+
 {%endblock%}

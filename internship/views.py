@@ -65,7 +65,13 @@ def internships(request):
     
 def intern_detail(request, internship_id):    
     intern = get_object_or_404(Internship, id = internship_id)
-    return render(request, 'internship/intern_detail.html', { 'intern' : intern })
+    uid = request.user.profile
+    applied = Application.objects.filter(student = uid, internship = internship_id)
+    if len(applied) > 0:
+        a = True
+    else:
+        a = False
+    return render(request, 'internship/intern_detail.html', { 'intern' : intern, 'applied' : a })
 
 def apply(request, internship_id):
     i = Internship.objects.get(id = internship_id)
@@ -93,8 +99,9 @@ def intern_applications(request, internship_id):
     return render(request, 'internship/intern_applications.html', {'applications' : a})
 
 def intern_delete(request, internship_id):
-    instance = Internship.objects.get(id=internship_id)
-    instance.delete()
+    if request.user.is_authenticated and request.user.profile.is_company:
+        instance = Internship.objects.get(id=internship_id)
+        instance.delete()
     return redirect('/')
 
 def user(request):

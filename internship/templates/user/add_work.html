@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Add work experience</h3>
+<style>
+    label {
+        width: 100px;
+    }
+    input {
+        width: 50%;
+    }
+    form {
+        margin: 50px;
+    }
+</style>
+<h3 style="text-align: center">Add work experience</h3>
 <div class="container-fluid">
 
-    <div class="row">
-        <div class = "col-sm-12 col-md-7">
+    <div class="row" style="margin:10px">
+        <div class = "col-sm-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
 
@@ -13,10 +24,10 @@
                                 {% csrf_token %}
                                     <label for="company">Company</label>
                                     <input type="text" name="company" id="company" />
-                                    <br />
+                                    <br /><br />
                                     <label for="description">Description</label>
-                                    <input type="text" name="description" id="description" />
-                                    <br />
+                                    <input type="text" name="description" id="description" style="height:200px;"/>
+                                    <br /><br />
                                 
                                     <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">

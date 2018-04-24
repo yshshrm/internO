@@ -2,32 +2,35 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<h1>Profile</h1> {{intern.profile}}
+<div style="margin: 10px;" class="well">
+
+<div class="well"><h2 >Profile</h2> {{intern.profile}}</div>
 <br>
-<h1>Description</h1> {{intern.description}}
+<div class="well"><h2>Description</h2> {{intern.description}}</div>
 <br>
-<h1>Location</h1> {{intern.location}}
+<div class="well"><h2>Location</h2> {{intern.location}}</div>
 <br>
-<h1>Company</h1> {{intern.company.name}}
+<div class="well"><h2>Company</h2> {{intern.company.name}}</div>
 
 <br><br>
 {% if applied %}
-    You've already applied
+    <a href="#" class="button btn btn-danger">You've already applied</a>
 {% elif request.user.is_authenticated and request.user.profile.is_student %}
     <form action="{% url 'apply' intern.id%}" method="post">
         {% csrf_token %}
-        <input type="submit" value="Submit Application">
+        <input type="submit" value="Submit Application" class="btn btn-success">
     </form>
 {% elif request.user.is_authenticated and request.user.profile.is_company %}
     <form action="{% url 'intern_applications' intern.id%}" method="post">
         {% csrf_token %}
-        <input type="submit" value="View applications">
+        <input type="submit" value="View applications" class="btn btn-success">
     </form>
+    <br / >
     <form action="{% url 'intern_delete' intern.id%}" method="post">
         {% csrf_token %}
-        <input type="submit" value="Delete Internship">
+        <input type="submit" value="Delete Internship" class="btn btn-danger">
     </form>
 {% endif %}
 
-
+</div>
 {% endblock %}

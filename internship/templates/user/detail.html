@@ -2,19 +2,24 @@
 
 {% block content %}
 
-<h3>{{ profile.name }}</h3>
-{{profile.email}}
+<div class="well" style="margin:10px;">
+    <h2 style="text-align:center;">{{ profile.name }}</h2>
+    <p style="text-align:center;">{{ profile.email }}</p>
 
-<h3>Education</h3>
-{% for e in education %}
-{{e.college}} - {{e.degree}} - {{e.gpa}}
-<br>
-{% endfor %}
+    <h3>Education</h3>
+    {% for e in education %}
+    <div class="well">
+        <h4>{{e.college}}</h4> <h4>{{e.degree}}</h4><p> CGPA: {{e.gpa}}</p>
+    </div>
+    {% endfor %}
 
-<h3>Work Experience</h3>
+    <h3>Work Experience</h3>
 
-{% for w in work %}
-{{w.company}} - {{w.description}}
-<br>
-{% endfor %}
+    {% for w in work %}
+    <div class="well">
+        <h4>{{w.company}}</h4> <p> {{w.description}}</p>
+    </div>
+
+    {% endfor %}
+</div>
 {%endblock%}

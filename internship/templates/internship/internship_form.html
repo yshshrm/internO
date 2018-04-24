@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<style>
+    label {
+        width: 150px;
+    }
+    input {
+        width: 60%;
+    }
+    form {
+        margin: 50px;
+    }
+</style>
 <div class="container-fluid">
 {% if request.user.is_authenticated and request.user.profile.is_company == True%}
 
+<h2>Add Internship</h2>
     <div class="row">
         <div class = "col-sm-12 col-md-7">
             <div class="panel panel-default">
@@ -13,13 +26,13 @@
                         {% csrf_token %}
                         <label for="profile">Profile</label>
                         <input type="text" name="profile" id="profile" />
-                        <br />
-                        <label for="description">Description</label>
-                        <input type="text" name="description" id="description" />
-                        <br />
+                        <br /><br />
+                        <label for="description" >Description</label>
+                        <input type="text" name="description" id="description" style="height: 150px;"/>
+                        <br /><br />
                         <label for="location">Location</label>
                         <input type="text" name="location" id="location" />
-                        <br />
+                        <br /><br />
                     
                         <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">

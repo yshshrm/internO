@@ -2,32 +2,37 @@
 
 {% block content %}
 
-<h3>{{ request.user.profile.name }}</h3>
-{{request.user.profile.email}}
+<div class="well" style="margin:10px;">
+    <h2 style="text-align:center;">{{ request.user.profile.name }}</h2>
+    <p style="text-align:center;">{{request.user.profile.email}}</p>
 
-{% if request.user.profile.is_student %}
+    {% if request.user.profile.is_student %}
 
-<h3>Education</h3>
-{% for e in education %}
-{{e.college}} - {{e.degree}} - {{e.gpa}}
-<br>
-{% endfor %}
-<form action="{% url 'add_education' %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Add Education">
-</form>
+    <h3>Education</h3>
+    {% for e in education %}
+    <div class="well">
+        <h4>{{e.college}}</h4> <h4>{{e.degree}}</h4><p> CGPA: {{e.gpa}}</p>
+    </div>
+    {% endfor %}
+    <form action="{% url 'add_education' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Add Education" class="btn btn-success">
+    </form>
 
-<h3>Work Experience</h3>
+    <h3>Work Experience</h3>
 
-{% for w in work %}
-{{w.company}} - {{w.description}}
-<br>
+    {% for w in work %}
+    <div class="well">
+        <h4>{{w.company}}</h4> <p> {{w.description}}</p>
+    </div>
 
-{% endfor %}
-<form action="{% url 'add_work' %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Add Work Experience">
-</form>
+    {% endfor %}
+    <form action="{% url 'add_work' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Add Work Experience" class="btn btn-success">
+    </form>
 
-{% endif %}
+    {% endif %}
+</div>
+
 {%endblock%}

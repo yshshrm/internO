@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% block content%}
+
 {% if request.user.is_authenticated and request.user.profile.is_company %}
-<ul>
-    {% for i in interns %} 
-    <li><a href="{% url 'intern_detail' i.id %}">{{i.profile}} - {{i.description}}</a></li>
+
+<div style="margin:10px;">
+    {% for i in interns %}
+    <div class = "well col-md-3" style="margin: 10px;">
+        <h4><a href="{% url 'intern_detail' i.id %}">{{i.profile}} - {{i.description}}</a></h4>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
+
 {% else %}
 <h1>Login as company</h1>
 {% endif %}

@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<ul>
+
+<div style="margin:10px;">
     {% for intern in interns %} 
-    <li><a href="{% url 'intern_detail' intern.id %}">{{intern.profile}} - {{intern.company.name}}</a></li>
+    <div class = "well col-md-3" style="margin: 10px;">
+        <h4><a href="{% url 'intern_detail' intern.id %}">{{intern.profile}} - {{intern.company.name}}</a></h4>
+        <p>Location: {{intern.location}}</p>
+    </div>
     {% endfor %}
-</ul>
+</div>
 
 {% endblock %}
