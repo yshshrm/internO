@@ -65,12 +65,12 @@ def internships(request):
     
 def intern_detail(request, internship_id):    
     intern = get_object_or_404(Internship, id = internship_id)
-    uid = request.user.profile
-    applied = Application.objects.filter(student = uid, internship = internship_id)
-    if len(applied) > 0:
-        a = True
-    else:
-        a = False
+    a = False
+    if request.user.is_authenticated:
+        uid = request.user.profile
+        applied = Application.objects.filter(student = uid, internship = internship_id)
+        if len(applied) > 0:
+            a = True
     return render(request, 'internship/intern_detail.html', { 'intern' : intern, 'applied' : a })
 
 def apply(request, internship_id):
