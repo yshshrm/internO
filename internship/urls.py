@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^login/$', views.login_x, name = 'login_x'),
     url(r'^login_auth$', views.login_button, name='login_auth'),
     url(r'^logout/$', views.logout_button, name = 'logout_button'),
+    url(r'^delete_user/$', views.delete_user, name="delete_user"),
 
     url(r'^user/$', views.user, name='user'),
     url(r'^user/(?P<u_id>[0-9]+)$', views.user_detail, name='user_detail'),
@@ -18,6 +19,8 @@ urlpatterns = [
     url(r'^add_work_button', views.add_work_button, name='add_work_button'),
     url(r'^user/add_education', views.add_education, name='add_education'),
     url(r'^add_education_button', views.add_education_button, name='add_education_button'),
+    url(r'^delete_education/(?P<xid>[0-9]+)', views.delete_education, name='delete_education'),
+    url(r'^delete_work/(?P<xid>[0-9]+)', views.delete_work, name='delete_work'),
 
     url(r'^internships/$', views.internships, name = 'internships'),
     url(r'^internships/add$', views.internship_add, name = 'internship_add'),

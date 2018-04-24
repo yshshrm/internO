@@ -30,6 +30,23 @@ def logout_button(request):
     logout(request)
     return redirect( '/')
 
+def delete_user(request):
+    uid = request.user.id
+    i = Profile.objects.get(id = uid)
+    logout(request)
+    i.delete()
+    return redirect('/')
+
+def delete_education(request, xid):
+    e = Education.objects.get(id = xid)
+    e.delete()
+    return redirect('/user')
+
+def delete_work(request, xid):
+    w = WorkEx.objects.get(id = xid)
+    w.delete()
+    return redirect('/user')
+
 def register_choice(request):
     return render(request, 'internship/register.html')
 

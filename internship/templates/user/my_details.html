@@ -12,8 +12,14 @@
     {% for e in education %}
     <div class="well">
         <h4>{{e.college}}</h4> <h4>{{e.degree}}</h4><p> CGPA: {{e.gpa}}</p>
+        <form action="{% url 'delete_education' e.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete Education" class="btn btn-danger">
+        </form>
     </div>
+    
     {% endfor %}
+
     <form action="{% url 'add_education' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Add Education" class="btn btn-success">
@@ -24,12 +30,24 @@
     {% for w in work %}
     <div class="well">
         <h4>{{w.company}}</h4> <p> {{w.description}}</p>
+        <form action="{% url 'delete_work' w.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete Work Experience" class="btn btn-danger">
+        </form>
     </div>
+    
 
     {% endfor %}
     <form action="{% url 'add_work' %}" method="post">
         {% csrf_token %}
         <input type="submit" value="Add Work Experience" class="btn btn-success">
+    </form>
+
+    <hr />
+
+    <form action="{% url 'delete_user' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Account" class="btn btn-danger">
     </form>
 
     {% endif %}
